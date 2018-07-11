@@ -266,6 +266,24 @@ kubeletConfiguration:
 						</code></pre>
 					</section>
 				</section>
+					<section>
+					<section>
+						<h2>Чего ради всё это?</h2>
+						<ul>
+							<li>Балансировка и афинность сессий</li>
+							<li>Метрики через prometheus/grafana</li>
+							<li>Закрыть RPC</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Как сделано в итоге?</h2>
+						<ul>
+							<li>Балансировка и афинность сессий - ipvs на kube-proxy</li>
+							<li>Метрики через prometheus/grafana - coreos-charts (helm)</li>
+							<li>Закрыть RPC - calico</li>
+						</ul>
+					</section>
+				</section>
 				<section>
 					<section>
 						<h2>Собственно, грабли</h2>
@@ -275,6 +293,7 @@ kubeletConfiguration:
 								<li>kubelet</li>
 								<li>docker</li>
 								<li>CNI</li>
+
 								<p>Как проявляются?</p>
 
 								<li>DNS</li>
@@ -283,6 +302,26 @@ kubeletConfiguration:
 								<li>Кластер недоступен</li>
 							</ul>
 						</div>
+					</section>
+					<section>
+						<p>Удивительно, но kube-proxy в этом списке нет</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<ul>
+							<li>С kube-proxy всё ясно</li>
+							<li>С kubelet обычно мистика, и непонятно, что же именно не работает</li>
+							<li>С calico – crd всех спасут!</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Calico</h2>
+						<h1>WIP</h1>
+					</section>
+					<section>
+						<h2>Prometheus</h2>
+						<h1>WIP</h1>
 					</section>
 				</section>
 				<section>
@@ -306,25 +345,17 @@ kubeletConfiguration:
 							<li>С 1745.7.0 готов torcx</li>
 						</ul>
 					</section>
-				</section>
-				<section>
 					<section>
-						<h2>Чего ради всё это?</h2>
+						<h2>Грабли CNI</h2>
 						<ul>
-							<li>Балансировка и афинность сессий</li>
-							<li>Метрики через prometheus/grafana</li>
-							<li>Закрыть RPC</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Как сделано в итоге?</h2>
-						<ul>
-							<li>Балансировка и афинность сессий - ipvs на kube-proxy</li>
-							<li>Метрики через prometheus/grafana - coreos-charts (helm)</li>
-							<li>Закрыть RPC - calico</li>
+							<li class="fragment">Изменения iptables – остаются после смерти контейнера</li>
+							<li class="fragment">Ребутать здоровую ноду – не страшно</li>
+							<li class="fragment" style="font-style: italic; font-size: 140%">Не забывать разрешающие политики!!!</li>
+							<li class="fragment" style="font-style: italic; font-size: 175%">Не забывать их устанавливать первыми!!!</li>
 						</ul>
 					</section>
 				</section>
+
 
 			</div>
 
