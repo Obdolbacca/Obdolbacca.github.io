@@ -129,6 +129,33 @@
 				</section>
 				<section>
 					<section>
+						<h2>Что необходимо скачать, чтобы развернуть k8s-кластер?</h2>
+						<ul>
+							<li class="fragment">kubelet<span class="fragment"> – поддерживает жизнь кластера</span></li>
+							<li class="fragment">kubeadm<span class="fragment"> – удобен для развёртывания и обновления кластера</span></li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Чего ради всё это?</h2>
+						<ul>
+							<li>Балансировка и афинность сессий</li>
+							<li>Метрики через prometheus/grafana</li>
+							<li>Закрыть RPC</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Как сделано в итоге?</h2>
+						<ul>
+							<li>Балансировка и афинность сессий - ipvs на kube-proxy</li>
+							<li>Метрики через prometheus/grafana - coreos-charts (helm)</li>
+							<li>Закрыть RPC - calico</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
 						<h2>Обычное развёртывание</h2>
 						<pre><code class="bash" data-trim contenteditable>
 $ kubeadm init
@@ -264,24 +291,6 @@ networking:
 kubeletConfiguration:
   feature-gates: "CoreDNS=true"
 						</code></pre>
-					</section>
-				</section>
-					<section>
-					<section>
-						<h2>Чего ради всё это?</h2>
-						<ul>
-							<li>Балансировка и афинность сессий</li>
-							<li>Метрики через prometheus/grafana</li>
-							<li>Закрыть RPC</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Как сделано в итоге?</h2>
-						<ul>
-							<li>Балансировка и афинность сессий - ipvs на kube-proxy</li>
-							<li>Метрики через prometheus/grafana - coreos-charts (helm)</li>
-							<li>Закрыть RPC - calico</li>
-						</ul>
 					</section>
 				</section>
 				<section>
