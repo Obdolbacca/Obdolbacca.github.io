@@ -311,8 +311,7 @@ kubeletConfiguration:
 					<section>
 						<ul>
 							<li>С kube-proxy всё ясно</li>
-							<li>Prometheus. Метрики собираются не все</li>
-							<li>С kubelet обычно мистика, и непонятно, что же именно не работает</li>
+							<li>Prometheus. Мистика. А мистика обычно с kubelet, и непонятно, что же именно не работает</li>
 							<li>С calico – crd всех спасут!</li>
 						</ul>
 					</section>
@@ -374,8 +373,16 @@ spec:
 						</code></pre>
 					</section>
 					<section>
+						<h2 class="fragment current-visible">CRD</h2>
+						<h2 class="fragment">Custom Resource Definition</h2>
+						<p class="fragment"><span>projectcalico.org/v3</span><span class="fragment"> -&gt; crd.projectcalico.org/v1 </span></p>
+					</section>
+					<section>
 						<h2>Prometheus</h2>
-						<h1>WIP</h1>
+						<p>Боль, как обычно, в kubelet</p>
+						<pre><code>
+KUBELET_EXTRA_ARGS=--authentication-token-webhook
+						</code></pre>
 					</section>
 				</section>
 				<section>
