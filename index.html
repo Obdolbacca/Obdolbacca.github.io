@@ -311,13 +311,67 @@ kubeletConfiguration:
 					<section>
 						<ul>
 							<li>С kube-proxy всё ясно</li>
+							<li>Prometheus. Метрики собираются не все</li>
 							<li>С kubelet обычно мистика, и непонятно, что же именно не работает</li>
 							<li>С calico – crd всех спасут!</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Calico</h2>
-						<h1>WIP</h1>
+						<ul>
+							<li>Calico - не только лишь CNI</li>
+							<li>Более того, много что ещё оно умеет</li>
+						</ul>
+						<br />
+						<br />
+						<h3 class="fragment">Встречайте</h3>
+						<h3 class="fragment">cluster-level firewall!!!</h3>
+					</section>
+					<section>
+						<h2>Calico</h2>
+						<ul>
+							<p>API</p>
+							<li>hostEndpoint</li>
+							<li>globalNetworkPolicy</li>
+						</ul>
+					</section>
+					<section>
+						<pre><code>
+apiVersion: v1
+kind: hostEndpoint
+metadata:
+  name: eth0
+  node: myhost
+  labels:
+    type: production
+spec:
+  interfaceName: eth0
+  expectedIPs: 
+  - 192.168.0.1
+  profiles: 
+  - profile1
+						</code></pre>
+					</section>
+					<section>
+						<pre><code class="yaml" style="font-size: 90%; max-height: 600px;">
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-tcp-6379
+spec:
+  selector: role == 'database'
+  types:
+  - Ingress
+  ingress:
+  - action: Allow
+    protocol: TCP
+    source:
+      notNets:
+        - 10.0.0.0/8	
+    destination:
+      ports:
+      - 6379
+						</code></pre>
 					</section>
 					<section>
 						<h2>Prometheus</h2>
