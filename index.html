@@ -426,6 +426,14 @@ KUBELET_EXTRA_ARGS=--authentication-token-webhook
 					</section>
 				</section>
 				<section>
+					<h2>Как сделано в итоге?</h2>
+					<ul>
+						<li>Балансировка и афинность сессий - ipvs на kube-proxy</li>
+						<li>Метрики через prometheus/grafana - coreos-charts (helm)</li>
+						<li>Закрыть RPC - calico</li>
+					</ul>
+				</section>
+				<section>
 					<h2>Спасибо за внимание!</h2>
 					<p style="font-size: 150%">Остались вопросы?<br /><br /><a href="https://t.me/bobizma">https://t.me/bobizma</a><br /><a href="https://www.facebook.com/oleg.bobok">https://www.facebook.com/oleg.bobok</a></p>
 				</section>
